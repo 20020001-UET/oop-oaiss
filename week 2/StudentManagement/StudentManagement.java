@@ -59,11 +59,11 @@ public class StudentManagement {
                 lastGroup[glengh] = studentArray[i].getGroup();
                 glengh++;
 
-                result += studentArray[i].getGroup() + '\n';
+                result += studentArray[i].getGroup() + "\n";
 
                 for (int j = 0; j < length; j++) {
                     if (sameGroup(studentArray[i], studentArray[j])) {
-                        result += studentArray[j].getInfo() + '\n';
+                        result += studentArray[j].getInfo() + "\n";
                     }
                 }
             }
@@ -78,23 +78,15 @@ public class StudentManagement {
      * @param id String
      */
     public void removeStudent(String id) {
-        int pos = -1;
         for (int i = 0; i < length; i++) {
             if (studentArray[i].getId().equals(id)) {
-                pos = i;
-                break;
+                for (int j = i; j < length - 1; j++) {
+                    studentArray[j] = studentArray[j + 1];
+                }
+                studentArray[length] = null;
+                length--;
             }
         }
-
-        if (pos == -1) {
-            return;
-        }
-
-        for (int i = pos; i < length - 1; i++) {
-            studentArray[i] = studentArray[i + 1];
-        }
-        studentArray[length - 1] = null;
-        length--;
         return;
     }
 
