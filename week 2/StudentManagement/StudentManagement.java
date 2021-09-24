@@ -49,7 +49,7 @@ public class StudentManagement {
         for (int i = 0; i < length; i++) {
             boolean check = false;
             for (int j = 0; j < glengh; j++) {
-                if (studentArray[i].getGroup() == lastGroup[j]) {
+                if (studentArray[i].getGroup().equals(lastGroup[j])) {
                     check = true;
                     break;
                 }
