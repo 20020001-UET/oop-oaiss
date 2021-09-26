@@ -87,7 +87,7 @@ public class Student {
      * @param n String
      */
     public void setName(String n) {
-        name = n;
+        this.name = n;
         return;
     }
 
@@ -97,7 +97,7 @@ public class Student {
      * @param i String
      */
     public void setId(String i) {
-        id = i;
+        this.id = i;
         return;
     }
 
@@ -107,7 +107,7 @@ public class Student {
      * @param g String
      */
     public void setGroup(String g) {
-        group = g;
+        this.group = g;
         return;
     }
 
@@ -117,7 +117,7 @@ public class Student {
      * @param e String
      */
     public void setEmail(String e) {
-        email = e;
+        this.email = e;
         return;
     }
 

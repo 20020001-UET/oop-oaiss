@@ -3,15 +3,8 @@ public class StudentManagement {
     // thuoc tinh
     private int length = 0;
     private Student[] studentArray = new Student[100];
-
-    // constructor
-    /**
-     * Constructor.
-     */
-    public StudentManagement() {
-        length = 0;
-        studentArray = new Student[100];
-    }
+    private int glengh = 0;
+    private String[] lastGroup = new String[100];
 
     /**
      * Check if two students is the same.
@@ -30,10 +23,8 @@ public class StudentManagement {
      * @param newStudent Student
      */
     public void addStudent(Student newStudent) {
-        if (length < 100) {
-            studentArray[length] = newStudent;
-            length++;
-        }
+        studentArray[length] = newStudent;
+        length++;
         return;
     }
 
@@ -44,27 +35,30 @@ public class StudentManagement {
      */
     public String studentsByGroup() {
         String result = "";
-        String[] lastGroup = new String[100];
-        int glengh = 0;
+
         for (int i = 0; i < length; i++) {
             boolean check = false;
+            String curGroup = studentArray[i].getGroup();
+
             for (int j = 0; j < glengh; j++) {
-                if (studentArray[i].getGroup().equals(lastGroup[j])) {
+                if (curGroup.equals(lastGroup[j])) {
                     check = true;
                     break;
                 }
             }
 
             if (!check) {
-                lastGroup[glengh] = studentArray[i].getGroup();
+                lastGroup[glengh] = curGroup;
                 glengh++;
+            }
+        }
 
-                result += studentArray[i].getGroup() + "\n";
+        for (int i = 0; i < glengh; i++) {
+            result += lastGroup[i] + '\n';
 
-                for (int j = 0; j < length; j++) {
-                    if (sameGroup(studentArray[i], studentArray[j])) {
-                        result += studentArray[j].getInfo() + "\n";
-                    }
+            for (int j = 0; j < length; j++) {
+                if (studentArray[j].getGroup().equals(lastGroup[i])) {
+                    result += studentArray[j].getInfo() + '\n';
                 }
             }
         }
@@ -83,7 +77,6 @@ public class StudentManagement {
                 for (int j = i; j < length - 1; j++) {
                     studentArray[j] = studentArray[j + 1];
                 }
-                studentArray[length] = null;
                 length--;
             }
         }
