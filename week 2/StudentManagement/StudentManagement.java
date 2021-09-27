@@ -1,8 +1,8 @@
 public class StudentManagement {
 
     // thuoc tinh
-    private Student[] students = new Student[100];
     private int length = 0;
+    private Student[] students = new Student[100];
 
     /**
      * Check if two students is the same.
@@ -32,27 +32,28 @@ public class StudentManagement {
      * @return String
      */
     public String studentsByGroup() {
-        String[] groups = new String[100];
-        int glength = 0;
         String result = "";
+        String[] lastGroup = new String[100];
+        int glengh = 0;
 
-        for (int i = 0; i < length; ++i) {
-            String curGroup = students[i].getGroup();
+        for (int i = 0; i < length; i++) {
             boolean check = false;
+            String curGroup = students[i].getGroup();
 
-            for (int j = 0; j < glength; ++j) {
-                if (curGroup.equals(groups[j])) {
+            for (int j = 0; j < glengh; j++) {
+                if (curGroup.equals(lastGroup[j])) {
                     check = true;
                     break;
                 }
             }
 
             if (!check) {
+                lastGroup[glengh] = curGroup;
+                glengh++;
 
-                groups[glength++] = curGroup;
                 result += curGroup + '\n';
 
-                for (int j = i; j < length; ++j) {
+                for (int j = i; j < length; j++) {
                     if (students[j].getGroup().equals(curGroup)) {
                         result += students[j].getInfo() + '\n';
                     }
@@ -81,4 +82,4 @@ public class StudentManagement {
         return;
     }
 
-}
+} 
